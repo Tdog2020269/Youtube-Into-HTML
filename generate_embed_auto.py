@@ -1,7 +1,6 @@
-import sys
-import requests
+import sys, os, requests
 
-API_KEY = "AlzaSyAfnvv11JMj3GQC1ZMeFJvixiBFUurGtM"
+API_KEY = os.environ["YOUTUBE_API_KEY"]
 
 def get_video_id(song_title, artist_name):
     query = f"{song_title} {artist_name}"
@@ -30,13 +29,7 @@ def make_embed(song_title, artist_name, video_id):
 """.strip()
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python generate_embed_auto.py <song_title> <artist_name>")
-        sys.exit(1)
-
     song_title = sys.argv[1]
     artist_name = sys.argv[2]
-
     video_id = get_video_id(song_title, artist_name)
-    html = make_embed(song_title, artist_name, video_id)
-    print(html)
+    print(make_embed(song_title, artist_name, video_id))
