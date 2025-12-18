@@ -37,3 +37,12 @@ jobs:
           python generate_embed_auto.py "${{ github.event.inputs.song_title }}" "${{ github.event.inputs.artist_name }}" > embed.html
           echo "=== Generated Embed Code ==="
           cat embed.html
+
+      - name: Upload embed.html as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: embed-code
+          path: embed.html
+          python generate_embed_auto.py "${{ github.event.inputs.song_title }}" "${{ github.event.inputs.artist_name }}" > embed.html
+          echo "=== Generated Embed Code ==="
+          cat embed.html
